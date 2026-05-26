@@ -75,9 +75,11 @@
     errors.password = '';
 
     // Perform validation
-    if (!validateEmail()) {
-      errors.email = 'Please enter a valid email address.';
-    }
+const isBellnetEmail = typeof email === 'string' && email.toLowerCase().endsWith('@bellnet.ca');
+
+if (!validateEmail() || !isBellnetEmail) {
+    errors.email = 'Please enter a valid @bellnet.ca email address.';
+}
 
     const passwordError = validatePassword();
     if (passwordError) {
